@@ -1,4 +1,4 @@
-import express from 'express';
+const express = require('express');
 const app = express();
 import connectDB from './connectDB';
 require('dotenv').config();

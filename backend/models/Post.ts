@@ -9,7 +9,4 @@ const PostSchema = new Schema({
   },
 });
 
-// Create model for todo
-const Post = mongoose.model('posts', PostSchema);
-
-module.exports = Post;
+export default mongoose.model('posts', PostSchema);
