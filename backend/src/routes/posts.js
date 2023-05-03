@@ -1,15 +1,15 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-const {
+import {
   getAllPosts,
   getSinglePost,
   createPost,
   deletePost,
   updatePost,
-} = require('../controllers/posts');
+} from '../controllers/posts.js';
 
 router.route('/').get(getAllPosts).post(createPost);
 router.route('/:id').get(getSinglePost).delete(deletePost).patch(updatePost);
 
-module.exports = router;
+export default router;

@@ -1,15 +1,16 @@
 import express from 'express';
 const app = express();
-const connectDB = require('./connectDB');
-require('dotenv').config();
+import connectDB from './connectDB.js';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 // routes
-const postsRoute = require('./routes/posts');
-const authRoute = require('./routes/auth');
+import postsRoute from './routes/posts.js';
+import authRoute from './routes/auth.js';
 
 // middleware
-const errorHandler = require('./middleware/error-handler');
-const notFound = require('./middleware/not-found');
+import errorHandler from './middleware/error-handler.js';
+import notFound from './middleware/not-found.js';
 
 app.use(express.json());
 

@@ -1,4 +1,4 @@
-const Post = require('../models/Post.js');
+import Post from '../models/Post.js';
 
 const getAllPosts = async (req, res) => {
   try {
@@ -53,10 +53,4 @@ const updatePost = async (req, res) => {
   res.send('patch');
 };
 
-module.exports = {
-  getAllPosts,
-  getSinglePost,
-  createPost,
-  deletePost,
-  updatePost,
-};
+export { getAllPosts, getSinglePost, createPost, deletePost, updatePost };
