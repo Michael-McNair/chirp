@@ -6,4 +6,4 @@ const login = async (req, res) => {
   res.send('login');
 };
 
-export { register, login };
+module.exports = { register, login };

@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-import {
+const {
   getAllPosts,
   getSinglePost,
   createPost,
   deletePost,
   updatePost,
-} from '../controllers/posts';
+} = require('../controllers/posts');
 
 router.route('/').get(getAllPosts).post(createPost);
 router.route('/:id').get(getSinglePost).delete(deletePost).patch(updatePost);

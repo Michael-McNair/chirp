@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 const app = express();
-import connectDB from './connectDB';
+const connectDB = require('./connectDB');
 require('dotenv').config();
 
 // routes
@@ -36,6 +36,3 @@ const start = async () => {
 };
 
 start();
-
-// to fix stupid typescript error
-export {};
