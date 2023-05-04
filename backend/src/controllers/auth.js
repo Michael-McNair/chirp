@@ -8,7 +8,7 @@ const register = async (req, res) => {
 
     res.status(201).json({ name: user.name, token: token });
   } catch (err) {
-    // console.log(err);
+    res.status(400).json(err);
   }
 };
 
@@ -30,7 +30,7 @@ const login = async (req, res) => {
   }
 
   const token = user.createJWT();
-  res.status(200).json({ name: user.name, token: token });
+  res.status(200).json({ user: { name: user.name }, token: token });
 };
 
 export { register, login };
