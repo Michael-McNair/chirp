@@ -11,11 +11,12 @@ import authRoute from './routes/auth.js';
 // middleware
 import errorHandler from './middleware/error-handler.js';
 import notFound from './middleware/not-found.js';
+import auth from './middleware/authentication.js';
 
 app.use(express.json());
 
 // routes
-app.use('/api/v1/posts', postsRoute);
+app.use('/api/v1/posts', auth, postsRoute);
 app.use('/api/v1', authRoute);
 
 // middleware
