@@ -1,11 +1,10 @@
 import mongoose from 'mongoose';
-const Schema = mongoose.Schema;
 
-// Create schema for todo
-const PostSchema = new Schema({
+const PostSchema = new mongoose.Schema({
   textContent: {
     type: String,
-    required: [true, 'The post text field is required'],
+    maxLength: [50, 'Message must be 50 characters or shorter'],
+    required: [true, 'Please provide text content'],
   },
 });
 
