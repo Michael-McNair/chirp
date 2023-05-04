@@ -1,14 +1,15 @@
 import User from '../models/User.js';
 import { BadRequestError, UnauthenticatedError } from '../errors/index.js';
+import asyncWrapper from '../middleware/async-wrapper.js';
 
-const register = async (req, res) => {
+const register = asyncWrapper(async (req, res) => {
   const user = await User.create(req.body);
   const token = user.createJWT();
 
   res.status(201).json({ name: user.name, token: token });
-};
+});
 
-const login = async (req, res) => {
+const login = asyncWrapper(async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -27,6 +28,6 @@ const login = async (req, res) => {
 
   const token = user.createJWT();
   res.status(200).json({ user: { name: user.name }, token: token });
-};
+});
 
 export { register, login };
