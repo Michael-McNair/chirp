@@ -20,8 +20,8 @@ app.use('/api/v1/posts', auth, postsRoute);
 app.use('/api/v1', authRoute);
 
 // middleware
-app.use(errorHandler);
 app.use(notFound);
+app.use(errorHandler);
 
 // server
 const port = process.env.PORT || 3000;
