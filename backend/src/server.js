@@ -1,7 +1,8 @@
-import express from 'express';
+import express, { application } from 'express';
 const app = express();
 import connectDB from './connectDB.js';
 import * as dotenv from 'dotenv';
+import cors from 'cors';
 dotenv.config();
 
 // routes
@@ -14,14 +15,8 @@ import notFound from './middleware/not-found.js';
 import auth from './middleware/authentication.js';
 
 // cors
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  next();
-});
+app.use(cors());
+app.options('*', cors());
 
 app.use(express.json());
 
