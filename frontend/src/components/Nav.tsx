@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function Nav() {
+export default function Nav(props: { userName: string }) {
   return (
     <nav>
       <ul>
@@ -16,6 +16,8 @@ export default function Nav() {
         <li>More</li>
       </ul>
       <Link to="/post">Post</Link>
+
+      <h3>{props.userName}</h3>
     </nav>
   );
 }

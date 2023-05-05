@@ -7,8 +7,11 @@ import Post from './routes/Post.tsx';
 
 import './App.css';
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function App() {
+  const [userName, setUserName] = useState('');
+
   return (
     <div
       className="App"
@@ -19,11 +22,11 @@ export default function App() {
       }}
     >
       <BrowserRouter>
-        <Nav />
+        <Nav userName={userName} />
         <Routes>
           <Route path="*" element={<Root />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setUserName={setUserName} />} />
           <Route path="/post" element={<Post />} />
         </Routes>
         <section>
