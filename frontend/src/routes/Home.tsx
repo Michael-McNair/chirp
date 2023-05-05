@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
-import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
+import { Route, Link, Routes } from 'react-router-dom';
 
 export default function Home() {
   const [results, setResults] = useState([]);
@@ -33,14 +33,20 @@ export default function Home() {
       <Routes>
         <Route
           path="/for-you"
-          element={results.map((result: any) => {
-            return (
-              <div key={result._id}>
-                <p>{result.createdBy.name}</p>
-                <h2>{result.textContent}</h2>
-              </div>
-            );
-          })}
+          element={results.map(
+            (result: {
+              _id: string;
+              createdBy: { name: string };
+              textContent: string;
+            }) => {
+              return (
+                <div key={result._id}>
+                  <p>{result.createdBy.name}</p>
+                  <h2>{result.textContent}</h2>
+                </div>
+              );
+            }
+          )}
         />
         <Route path="/following" element={<h2>following</h2>} />
       </Routes>

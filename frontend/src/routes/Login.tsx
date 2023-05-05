@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import axios from 'axios';
+interface Props {
+  setUserName: React.Dispatch<React.SetStateAction<string>>;
+}
 
-export default function Register(props: { setUserName: any }) {
+export default function Register({ setUserName }: Props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -27,7 +30,7 @@ export default function Register(props: { setUserName: any }) {
               password: password,
             })
             .then((res) => {
-              props.setUserName(res.data.user.name);
+              setUserName(res.data.user.name);
               localStorage.setItem('token', res.data.token);
             })
             .catch((err) => {
