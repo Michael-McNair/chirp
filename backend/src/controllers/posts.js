@@ -3,7 +3,7 @@ import { NotFoundError, BadRequestError } from '../errors/index.js';
 import asyncWrapper from '../middleware/async-wrapper.js';
 
 const getAllPosts = async (req, res) => {
-  const posts = await Post.find({});
+  const posts = await Post.find({}).populate('createdBy');
   res.status(200).json({ success: true, posts });
 };
 
