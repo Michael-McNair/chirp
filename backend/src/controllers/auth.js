@@ -30,4 +30,8 @@ const login = asyncWrapper(async (req, res) => {
   res.status(200).json({ user: { name: user.name }, token: token });
 });
 
-export { register, login };
+const loginInfo = asyncWrapper(async (req, res) => {
+  res.status(200).json(req.user);
+});
+
+export { register, login, loginInfo };
