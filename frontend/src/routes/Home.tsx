@@ -14,7 +14,6 @@ export default function Home() {
     axios
       .get('http://localhost:3000/api/v1/posts', { headers })
       .then((res) => {
-        console.log(res.data.posts);
         setResults(res.data.posts);
       })
       .catch((err) => {
@@ -35,7 +34,6 @@ export default function Home() {
         <Route
           path="/for-you"
           element={results.map((result: any) => {
-            console.log(result);
             return (
               <div key={result._id}>
                 <p>{result.createdBy.name}</p>
