@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Nav from './components/Nav.tsx';
 
-function App() {
-  const [count, setCount] = useState(0)
+import Root from './routes/Home.tsx';
+import Register from './routes/Register.tsx';
+import Login from './routes/Login.tsx';
+import Post from './routes/Post.tsx';
 
+import './App.css';
+import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
+
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div
+      className="App"
+      style={{
+        display: 'flex',
+        width: '50vw',
+        justifyContent: 'space-between',
+      }}
+    >
+      <BrowserRouter>
+        <Nav />
+        <Routes>
+          <Route path="*" element={<Root />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/post" element={<Post />} />
+        </Routes>
+        <section>
+          <Link to="/register">Register</Link>
+          <Link to="/login">Login</Link>
+          {localStorage.getItem('token') && <h3>token present</h3>}
+        </section>
+      </BrowserRouter>
+    </div>
+  );
 }
-
-export default App
