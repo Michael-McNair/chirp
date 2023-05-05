@@ -21,7 +21,6 @@ export default function App() {
     axios
       .get('http://localhost:3000/api/v1/login-info', { headers })
       .then((res) => {
-        console.log(res.data);
         setUserName(res.data.name);
       })
       .catch((err) => {
