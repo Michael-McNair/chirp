@@ -5,7 +5,7 @@ export default function Nav(props: { userName: string }) {
     <nav>
       <ul>
         <li>
-          <Link to="/for-you">Home</Link>
+          <Link to="/home">Home</Link>
         </li>
         <li>Explore</li>
         <li>Notifications</li>
