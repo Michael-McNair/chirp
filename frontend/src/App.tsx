@@ -1,6 +1,6 @@
 import Nav from './components/Nav.tsx';
 
-import Root from './routes/Home.tsx';
+import Home from './routes/Home.tsx';
 import Register from './routes/Register.tsx';
 import Login from './routes/Login.tsx';
 import Post from './routes/Post.tsx';
@@ -12,6 +12,7 @@ import axios from 'axios';
 
 export default function App() {
   const [userName, setUserName] = useState('');
+  const [page, setPage] = useState('for-you');
 
   useEffect(() => {
     const headers = {
@@ -40,7 +41,10 @@ export default function App() {
       <BrowserRouter>
         <Nav userName={userName} />
         <Routes>
-          <Route path="*" element={<Root />} />
+          <Route
+            path="/home"
+            element={<Home page={page} setPage={setPage} />}
+          />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login setUserName={setUserName} />} />
           <Route path="/post" element={<Post />} />
@@ -48,7 +52,6 @@ export default function App() {
         <section>
           <Link to="/register">Register</Link>
           <Link to="/login">Login</Link>
-          {localStorage.getItem('token') && <h3>token present</h3>}
         </section>
       </BrowserRouter>
     </div>
