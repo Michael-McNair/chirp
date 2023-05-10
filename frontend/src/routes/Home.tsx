@@ -1,55 +1,25 @@
-import { useEffect } from 'react';
-import axios from 'axios';
-import { useState } from 'react';
-import { Route, Link, Routes } from 'react-router-dom';
+import ForYou from '../components/ForYou.tsx';
+import Following from '../components/Following.tsx';
 
-export default function Home() {
-  const [results, setResults] = useState([]);
+interface Props {
+  page: string;
+  setPage: React.Dispatch<React.SetStateAction<string>>;
+}
 
-  useEffect(() => {
-    const headers = {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    };
-
-    axios
-      .get('http://localhost:3000/api/v1/posts', { headers })
-      .then((res) => {
-        setResults(res.data.posts);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
+export default function Home({ page, setPage }: Props) {
   return (
     <div>
       <div
         className="nav"
         style={{ display: 'flex', justifyContent: 'space-evenly' }}
       >
-        <Link to="/for-you">For You</Link>
-        <Link to="/following">Following</Link>
+        <button onClick={() => setPage('for-you')}>For you</button>
+        <button onClick={() => setPage('following')}>Following</button>
       </div>
-      <Routes>
-        <Route
-          path="/for-you"
-          element={results.map(
-            (result: {
-              _id: string;
-              createdBy: { name: string };
-              textContent: string;
-            }) => {
-              return (
-                <div key={result._id}>
-                  <p>{result.createdBy.name}</p>
-                  <h2>{result.textContent}</h2>
-                </div>
-              );
-            }
-          )}
-        />
-        <Route path="/following" element={<h2>following</h2>} />
-      </Routes>
+      <section>
+        {page === 'for-you' && <ForYou />}
+        {page === 'following' && <Following />}
+      </section>
     </div>
   );
 }
