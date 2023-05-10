@@ -5,7 +5,6 @@ import Register from './routes/Register.tsx';
 import Login from './routes/Login.tsx';
 import Post from './routes/Post.tsx';
 
-import './App.css';
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
