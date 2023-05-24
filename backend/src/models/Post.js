@@ -4,7 +4,7 @@ const PostSchema = new mongoose.Schema(
   {
     textContent: {
       type: String,
-      maxLength: [100, 'Message must be 100 characters or shorter'],
+      maxLength: [300, 'Message must be 300 characters or shorter'],
       required: [true, 'Please provide text content'],
     },
     createdBy: {
