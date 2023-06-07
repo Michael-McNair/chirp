@@ -21,6 +21,10 @@ const UserSchema = new mongoose.Schema({
     required: [true, 'Please provide password'],
     minLength: 6,
   },
+  color: {
+    type: String,
+    required: [true, "Couldn't generate color"],
+  },
 });
 
 UserSchema.pre('save', async function () {

@@ -3,6 +3,9 @@ import { BadRequestError, UnauthenticatedError } from '../errors/index.js';
 import asyncWrapper from '../middleware/async-wrapper.js';
 
 const register = asyncWrapper(async (req, res) => {
+  const colors = ['0079FF', '00DFA2', 'F6FA70', 'FF0060'];
+  req.body.color = colors[Math.floor(Math.random() * colors.length)];
+
   const user = await User.create(req.body);
   const token = user.createJWT();
 
