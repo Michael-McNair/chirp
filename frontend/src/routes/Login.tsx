@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
-interface Props {
-  setUserName: React.Dispatch<React.SetStateAction<string>>;
-}
 
-export default function Register({ setUserName }: Props) {
+export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -30,8 +27,8 @@ export default function Register({ setUserName }: Props) {
               password: password,
             })
             .then((res) => {
-              setUserName(res.data.user.name);
               localStorage.setItem('token', res.data.token);
+              window.location.reload();
             })
             .catch((err) => {
               console.log(err);

@@ -8,7 +8,7 @@ interface Props {
 
 export default function Home({ page, setPage }: Props) {
   return (
-    <div>
+    <div className="w-1/2">
       <div
         className="nav"
         style={{ display: 'flex', justifyContent: 'space-evenly' }}

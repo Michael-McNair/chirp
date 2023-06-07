@@ -28,7 +28,10 @@ export default function ForYou() {
           textContent: string;
         }) => {
           return (
-            <div key={result._id}>
+            <div
+              key={result._id}
+              className="border-black border-solid border-2 my-1"
+            >
               <p>{result.createdBy.name}</p>
               <h2>{result.textContent}</h2>
             </div>
