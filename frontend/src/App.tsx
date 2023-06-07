@@ -9,8 +9,15 @@ import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import { User } from './sharedTypes.tsx';
+
 export default function App() {
-  const [userName, setUserName] = useState('');
+  const [user, setUser] = useState<User>({
+    id: '',
+    name: '',
+    email: '',
+    color: '',
+  });
   const [page, setPage] = useState('for-you');
 
   useEffect(() => {
@@ -19,9 +26,9 @@ export default function App() {
     };
 
     axios
-      .get('http://localhost:3000/api/v1/login-info', { headers })
+      .get('http://localhost:3000/api/v1/user-info', { headers })
       .then((res) => {
-        setUserName(res.data.name);
+        setUser(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -29,29 +36,28 @@ export default function App() {
   }, []);
 
   return (
-    <div
-      className="App"
-      style={{
-        display: 'flex',
-        width: '50vw',
-        justifyContent: 'space-between',
-      }}
-    >
+    <div className="flex justify-between max-w-screen-md w-full px-8">
       <BrowserRouter>
-        <Nav userName={userName} />
+        <Nav user={user} />
         <Routes>
           <Route
             path="/home"
             element={<Home page={page} setPage={setPage} />}
           />
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login setUserName={setUserName} />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/post" element={<Post />} />
         </Routes>
-        <section>
-          <Link to="/register">Register</Link>
-          <Link to="/login">Login</Link>
-        </section>
+        {user ? (
+          <section className="w-1/4">
+            <h3>Who to follow</h3>
+          </section>
+        ) : (
+          <section className="w-1/4">
+            <Link to="/register">Register</Link>
+            <Link to="/login">Login</Link>
+          </section>
+        )}
       </BrowserRouter>
     </div>
   );
