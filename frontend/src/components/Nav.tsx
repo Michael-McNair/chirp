@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import NavItem from './NavItem';
 import { User } from '../sharedTypes';
-import Icon from './icon';
+import Icon from './Icon';
 
 export default function Nav(props: { user: User }) {
   return (
