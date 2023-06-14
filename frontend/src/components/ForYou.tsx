@@ -31,13 +31,10 @@ export default function ForYou() {
           textContent: string;
         }) => {
           return (
-            <div
-              key={result._id}
-              className="border-black border-solid border-2 my-1"
-            >
+            <div key={result._id} className="my-4">
               <div className="flex items-center gap-1 justify-start">
                 <Icon
-                  size={8}
+                  size={7}
                   color={result.createdBy.color}
                   userName={result.createdBy.name}
                 />

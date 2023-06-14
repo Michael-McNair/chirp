@@ -37,30 +37,32 @@ export default function App() {
   }, []);
 
   return (
-    <div className="flex justify-between max-w-screen-md w-full px-8">
-      <BrowserRouter>
-        <Nav user={user} />
-        <Routes>
-          <Route
-            path="/home"
-            element={<Home page={page} setPage={setPage} />}
-          />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/post" element={<Post />} />
-          <Route path="/user/:_id" element={<UserPage />} />
-        </Routes>
-        {user ? (
-          <section className="w-1/4">
-            <h3>Who to follow</h3>
-          </section>
-        ) : (
-          <section className="w-1/4">
-            <Link to="/register">Register</Link>
-            <Link to="/login">Login</Link>
-          </section>
-        )}
-      </BrowserRouter>
+    <div className="flex justify-center items-start w-screen bg-slate-100">
+      <div className="flex justify-between max-w-screen-md w-full px-8 gap-4">
+        <BrowserRouter>
+          <Nav user={user} />
+          <Routes>
+            <Route
+              path="/home"
+              element={<Home page={page} setPage={setPage} />}
+            />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/post" element={<Post />} />
+            <Route path="/user/:_id" element={<UserPage />} />
+          </Routes>
+          {user ? (
+            <section className="w-1/4">
+              <h3>Who to follow</h3>
+            </section>
+          ) : (
+            <section className="w-1/4">
+              <Link to="/register">Register</Link>
+              <Link to="/login">Login</Link>
+            </section>
+          )}
+        </BrowserRouter>
+      </div>
     </div>
   );
 }

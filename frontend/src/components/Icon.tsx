@@ -5,10 +5,17 @@ export default function Icon(props: {
 }) {
   return (
     <div
-      className={`rounded-full flex items-center justify-center h-${props.size} w-${props.size}`}
-      style={{ backgroundColor: `#${props.color}` }}
+      className="rounded-full flex items-center justify-center"
+      style={{
+        backgroundColor: `#${props.color}`,
+        width: `${props.size * 0.25}rem`,
+        height: `${props.size * 0.25}rem`,
+      }}
     >
-      <h2 className="text-white text-2xl">
+      <h2
+        className="text-white"
+        style={{ fontSize: `${props.size * 0.17}rem` }}
+      >
         {props.userName ? props.userName.split('')[0].toUpperCase() : ''}
       </h2>
     </div>
