@@ -30,7 +30,6 @@ export default function ForYou() {
           createdBy: { name: string; color: string; _id: string };
           textContent: string;
         }) => {
-          console.log(result.createdBy);
           return (
             <div
               key={result._id}
