@@ -5,7 +5,7 @@ export default function Icon(props: {
 }) {
   return (
     <div
-      className={`rounded-full w-${props.size} h-${props.size} flex items-center justify-center`}
+      className={`rounded-full flex items-center justify-center h-${props.size} w-${props.size}`}
       style={{ backgroundColor: `#${props.color}` }}
     >
       <h2 className="text-white text-2xl">
