@@ -4,6 +4,7 @@ import Home from './routes/Home.tsx';
 import Register from './routes/Register.tsx';
 import Login from './routes/Login.tsx';
 import Post from './routes/Post.tsx';
+import UserPage from './routes/UserPage.tsx';
 
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -47,6 +48,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/post" element={<Post />} />
+          <Route path="/user/:_id" element={<UserPage />} />
         </Routes>
         {user ? (
           <section className="w-1/4">
