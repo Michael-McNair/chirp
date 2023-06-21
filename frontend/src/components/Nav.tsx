@@ -3,11 +3,66 @@ import NavItem from './NavItem';
 import { User } from '../sharedTypes';
 import Icon from './Icon';
 
-export default function Nav(props: { user: User }) {
+import { useEffect, useRef, ReactNode, useState } from 'react';
+
+type ResizeCallback = (width: number) => void;
+
+type ResizeAwareDivProps = {
+  onResize: ResizeCallback;
+  children: ReactNode;
+  className: string;
+};
+
+const ResizeAwareDiv: React.FC<ResizeAwareDivProps> = ({
+  onResize,
+  children,
+  className,
+}) => {
+  const divRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width } = entry.contentRect;
+        onResize(width);
+      }
+    });
+
+    if (divRef.current) {
+      observer.observe(divRef.current);
+    }
+
+    return () => {
+      if (divRef.current) {
+        observer.unobserve(divRef.current);
+      }
+    };
+  }, [onResize]);
+
   return (
-    <nav className="w-1/4 flex flex-col justify-between h-screen">
-      <div>
-        <ul>
+    <div ref={divRef} className={className}>
+      {children}
+    </div>
+  );
+};
+
+// Usage:
+
+export default function Nav(props: { user: User }) {
+  const [navWidth, setNavWidth] = useState(0);
+
+  return (
+    <ResizeAwareDiv
+      className="h-screen w-1/4"
+      onResize={(width) => setNavWidth(width)}
+    >
+      <div className="w-full h-0"></div>
+
+      <nav
+        className="flex flex-col justify-stretch fixed h-[calc(100%-2rem)] my-4 py-4 px-3 rounded-md bg-slate-50 shadow-sm"
+        style={{ width: `${navWidth}px` }}
+      >
+        <ul className="h-full flex flex-col justify-between ">
           <NavItem>
             <Link to="/home">Home</Link>
           </NavItem>
@@ -18,15 +73,15 @@ export default function Nav(props: { user: User }) {
           <NavItem>Chirp Blue</NavItem>
           <NavItem>Profile</NavItem>
           <NavItem>More</NavItem>
+          <Link to="/post">Post</Link>
         </ul>
-        <Link to="/post">Post</Link>
-      </div>
 
-      <div className="my-4 flex items-center gap-1">
-        <Icon userName={props.user.name} size={8} color={props.user.color} />
+        <div className="mt-4 flex items-center gap-1">
+          <Icon userName={props.user.name} size={8} color={props.user.color} />
 
-        <h3>{props.user.name}</h3>
-      </div>
-    </nav>
+          <h3>{props.user.name}</h3>
+        </div>
+      </nav>
+    </ResizeAwareDiv>
   );
 }
