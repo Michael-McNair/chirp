@@ -25,6 +25,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Couldn't generate color"],
   },
+  following: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
 });
 
 UserSchema.pre('save', async function () {
