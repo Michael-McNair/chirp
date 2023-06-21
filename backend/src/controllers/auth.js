@@ -47,6 +47,7 @@ const userInfo = asyncWrapper(async (req, res) => {
       email: user.email,
       name: user.name,
       id: user.id,
+      following: user.following,
     },
   });
 });
