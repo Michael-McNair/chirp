@@ -36,11 +36,18 @@ const login = asyncWrapper(async (req, res) => {
 const userInfo = asyncWrapper(async (req, res) => {
   const user = await User.findById(req.user.userId);
 
+  if (!user) {
+    res.status(200).json({ success: false });
+  }
+
   res.status(200).json({
-    color: user.color,
-    email: user.email,
-    name: user.name,
-    id: user.id,
+    success: true,
+    response: {
+      color: user.color,
+      email: user.email,
+      name: user.name,
+      id: user.id,
+    },
   });
 });
 
