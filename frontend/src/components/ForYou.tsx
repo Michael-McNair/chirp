@@ -31,16 +31,20 @@ export default function ForYou() {
           textContent: string;
         }) => {
           return (
-            <div key={result._id} className="my-4">
-              <div className="flex items-center gap-1 justify-start">
+            <div key={result._id} className="my-6">
+              <div className="flex items-center gap-3 justify-start">
                 <Icon
-                  size={7}
+                  size={12}
                   color={result.createdBy.color}
                   userName={result.createdBy.name}
                 />
-                <Name name={result.createdBy.name} _id={result.createdBy._id} />
+                <Name
+                  name={result.createdBy.name}
+                  _id={result.createdBy._id}
+                  className={'text-2xl'}
+                />
               </div>
-              <h2>{result.textContent}</h2>
+              <h2 className="text-xl mt-3">{result.textContent}</h2>
             </div>
           );
         }

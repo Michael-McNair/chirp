@@ -1,27 +1,67 @@
-// import { useState, useEffect } from 'react';
-// import axios from 'axios';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-export default function Following() {
-  // const [results, setResults] = useState([]);
+import Name from './Name.tsx';
+import Icon from './Icon.tsx';
 
-  // useEffect(() => {
-  //   const headers = {
-  //     Authorization: `Bearer ${localStorage.getItem('token')}`,
-  //   };
+import { Post } from '../sharedTypes.tsx';
 
-  //   axios
-  //     .get('http://localhost:3000/api/v1/posts', { headers })
-  //     .then((res) => {
-  //       setResults(res.data.posts);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
+export default function Following(props: { following: string[] }) {
+  const [results, setResults] = useState([]);
+
+  console.log(props.following);
+
+  useEffect(() => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    axios
+      .get('http://localhost:3000/api/v1/posts', { headers })
+      .then((res) => {
+        const followingPosts = res.data.posts.filter((post: Post) => {
+          if (props.following.includes(post.createdBy._id)) {
+            return true;
+          }
+          return false;
+        });
+
+        console.log(followingPosts);
+
+        setResults(followingPosts);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div className="following">
-      <h2>following</h2>
+      {results.map(
+        (result: {
+          _id: string;
+          createdBy: { name: string; color: string; _id: string };
+          textContent: string;
+        }) => {
+          return (
+            <div key={result._id} className="my-6">
+              <div className="flex items-center gap-3 justify-start">
+                <Icon
+                  size={12}
+                  color={result.createdBy.color}
+                  userName={result.createdBy.name}
+                />
+                <Name
+                  name={result.createdBy.name}
+                  _id={result.createdBy._id}
+                  className={'text-2xl'}
+                />
+              </div>
+              <h2 className="text-xl mt-3">{result.textContent}</h2>
+            </div>
+          );
+        }
+      )}
     </div>
   );
 }
