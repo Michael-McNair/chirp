@@ -53,13 +53,13 @@ export default function Nav(props: { user: User }) {
 
   return (
     <ResizeAwareDiv
-      className="h-screen w-1/4"
+      className="h-screen w-56"
       onResize={(width) => setNavWidth(width)}
     >
       <div className="w-full h-0"></div>
 
       <nav
-        className="flex flex-col justify-stretch fixed h-[calc(100%-2rem)] my-4 py-4 px-3 rounded-md bg-slate-50 shadow-sm"
+        className="flex flex-col justify-stretch fixed h-[calc(100%-4rem)] my-8 p-7 rounded-md bg-slate-50 shadow-sm"
         style={{ width: `${navWidth}px` }}
       >
         <ul className="h-full flex flex-col justify-between ">
@@ -73,13 +73,15 @@ export default function Nav(props: { user: User }) {
           <NavItem>Chirp Blue</NavItem>
           <NavItem>Profile</NavItem>
           <NavItem>More</NavItem>
-          <Link to="/post">Post</Link>
+          <Link to="/post" className="text-2xl">
+            Post
+          </Link>
         </ul>
 
-        <div className="mt-4 flex items-center gap-1">
-          <Icon userName={props.user.name} size={8} color={props.user.color} />
+        <div className="mt-7 flex items-center gap-2">
+          <Icon userName={props.user.name} size={10} color={props.user.color} />
 
-          <h3>{props.user.name}</h3>
+          <h3 className="text-xl">{props.user.name}</h3>
         </div>
       </nav>
     </ResizeAwareDiv>

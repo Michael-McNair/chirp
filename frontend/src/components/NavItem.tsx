@@ -5,7 +5,7 @@ type Props = {
 };
 
 const NavItem: React.FC<Props> = ({ children }) => {
-  return <li>{children}</li>;
+  return <li className="text-2xl">{children}</li>;
 };
 
 export default NavItem;

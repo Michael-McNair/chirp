@@ -4,9 +4,10 @@ import Following from '../components/Following.tsx';
 interface Props {
   page: string;
   setPage: React.Dispatch<React.SetStateAction<string>>;
+  following: string[];
 }
 
-export default function Home({ page, setPage }: Props) {
+export default function Home({ page, setPage, following }: Props) {
   return (
     <div className="w-1/2">
       <div
@@ -18,7 +19,7 @@ export default function Home({ page, setPage }: Props) {
       </div>
       <section>
         {page === 'for-you' && <ForYou />}
-        {page === 'following' && <Following />}
+        {page === 'following' && <Following following={following} />}
       </section>
     </div>
   );
