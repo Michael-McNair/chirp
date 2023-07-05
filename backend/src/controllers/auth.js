@@ -1,4 +1,5 @@
 import User from '../models/User.js';
+import Post from '../models/Post.js';
 import { BadRequestError, UnauthenticatedError } from '../errors/index.js';
 import asyncWrapper from '../middleware/async-wrapper.js';
 
@@ -33,11 +34,11 @@ const login = asyncWrapper(async (req, res) => {
   res.status(200).json({ user: { name: user.name }, token: token });
 });
 
-const userInfo = asyncWrapper(async (req, res) => {
+const myInfo = asyncWrapper(async (req, res) => {
   const user = await User.findById(req.user.userId);
 
   if (!user) {
-    res.status(200).json({ success: false });
+    res.status(400).json({ success: false });
   }
 
   res.status(200).json({
@@ -82,4 +83,26 @@ const follow = asyncWrapper(async (req, res) => {
   res.status(200).json({ user });
 });
 
-export { register, login, userInfo, follow };
+const publicUserInfo = asyncWrapper(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (!user) {
+    res.status(400).json({ success: false });
+  }
+
+  const posts = await Post.find({ createdBy: req.params.id }).select(
+    'textContent createdAt'
+  );
+
+  res.status(200).json({
+    success: true,
+    response: {
+      color: user.color,
+      name: user.name,
+      id: user.id,
+      posts: posts,
+    },
+  });
+});
+
+export { register, login, myInfo, follow, publicUserInfo };
