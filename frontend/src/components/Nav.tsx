@@ -3,8 +3,6 @@ import NavItem from './NavItem';
 import { User } from '../sharedTypes';
 import Icon from './Icon';
 
-import { useEffect, useRef, ReactNode, useState } from 'react';
-
 // type ResizeCallback = (width: number) => void;
 
 // type ResizeAwareDivProps = {
@@ -47,8 +45,6 @@ import { useEffect, useRef, ReactNode, useState } from 'react';
 // };
 
 export default function Nav(props: { user: User }) {
-  const [navWidth, setNavWidth] = useState(0);
-
   return (
     <section className="h-screen w-52 flex-shrink-0">
       <div className="w-full h-0"></div>

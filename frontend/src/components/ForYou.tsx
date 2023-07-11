@@ -23,7 +23,7 @@ export default function ForYou() {
   }, []);
 
   return (
-    <div className="for-you">
+    <div>
       {results.map(
         (result: {
           _id: string;
