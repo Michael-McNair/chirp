@@ -91,7 +91,7 @@ const publicUserInfo = asyncWrapper(async (req, res) => {
   }
 
   const posts = await Post.find({ createdBy: req.params.id }).select(
-    'textContent createdAt'
+    '_id textContent createdBy createdAt updatedAt'
   );
 
   res.status(200).json({
