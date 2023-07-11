@@ -1,15 +1,15 @@
 import express from 'express';
+import auth from '../middleware/authentication.js';
 const router = express.Router();
 
 import {
   getAllPosts,
-  getSinglePost,
   createPost,
   deletePost,
   updatePost,
 } from '../controllers/posts.js';
 
-router.route('/').get(getAllPosts).post(createPost);
-router.route('/:id').get(getSinglePost).delete(deletePost).patch(updatePost);
+router.route('/').get(getAllPosts).post(auth, createPost);
+router.route('/:id').delete(auth, deletePost).patch(auth, updatePost);
 
 export default router;

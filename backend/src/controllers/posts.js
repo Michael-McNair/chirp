@@ -7,18 +7,6 @@ const getAllPosts = async (req, res) => {
   res.status(200).json({ success: true, posts });
 };
 
-const getSinglePost = asyncWrapper(async (req, res) => {
-  const { id: postId } = req.params;
-
-  const post = await Post.findOne({ _id: postId });
-
-  if (!post) {
-    throw new NotFoundError(`No post with id ${postId}`);
-  }
-
-  res.status(200).json({ success: true, post });
-});
-
 const createPost = asyncWrapper(async (req, res) => {
   req.body.createdBy = req.user.userId;
 
@@ -71,4 +59,4 @@ const updatePost = asyncWrapper(async (req, res) => {
     .json({ success: true, post: { textContent: post.textContent } });
 });
 
-export { getAllPosts, getSinglePost, createPost, deletePost, updatePost };
+export { getAllPosts, createPost, deletePost, updatePost };
