@@ -1,9 +1,10 @@
-export interface User {
+export interface UserWithPosts {
   id: string;
   name: string;
   email: string;
   color: string;
   following: [];
+  posts: Post[];
 }
 
 export interface Post {
@@ -13,3 +14,5 @@ export interface Post {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface User extends Omit<UserWithPosts, 'posts'> {}
