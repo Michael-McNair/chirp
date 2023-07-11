@@ -45,10 +45,10 @@ export default function App() {
 
   return (
     <div className="flex justify-center items-start w-screen bg-slate-100">
-      <div className="flex justify-between max-w-6xl w-full px-8 lg:px-20 gap-8">
+      <div className="flex justify-between max-w-6xl w-full px-8 lg:px-20 gap-5">
         <BrowserRouter>
           <Nav user={user} />
-          <div className="w-1/2">
+          <div className="w-1/2 shadow-md">
             <Routes>
               <Route
                 path="/home"

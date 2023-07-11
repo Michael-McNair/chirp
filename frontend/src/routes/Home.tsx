@@ -9,11 +9,8 @@ interface Props {
 
 export default function Home({ page, setPage, following }: Props) {
   return (
-    <div className="w-full">
-      <div
-        className="nav"
-        style={{ display: 'flex', justifyContent: 'space-evenly' }}
-      >
+    <div className="w-full px-4">
+      <div className="flex justify-evenly">
         <button onClick={() => setPage('for-you')}>For you</button>
         <button onClick={() => setPage('following')}>Following</button>
       </div>
