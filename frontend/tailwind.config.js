@@ -4,6 +4,7 @@ module.exports = {
     extend: {},
     screens: {
       md: '700px',
+      lg: '900px',
     },
   },
   plugins: [],
