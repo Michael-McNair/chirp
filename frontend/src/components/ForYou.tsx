@@ -31,7 +31,7 @@ export default function ForYou() {
           textContent: string;
         }) => {
           return (
-            <div key={result._id} className="my-6">
+            <div key={result._id} className="mb-6">
               <div className="flex items-center gap-3 justify-start">
                 <Icon
                   size={12}

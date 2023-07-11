@@ -48,7 +48,7 @@ export default function App() {
       <div className="flex justify-between max-w-6xl w-full px-8 lg:px-20 gap-5">
         <BrowserRouter>
           <Nav user={user} />
-          <div className="w-1/2 shadow-md">
+          <div className="w-1/2 shadow-md bg-slate-50">
             <Routes>
               <Route
                 path="/home"

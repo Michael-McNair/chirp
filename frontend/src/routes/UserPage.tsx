@@ -50,7 +50,7 @@ export default function UserPage() {
               {user.name.toUpperCase()}
             </h2>
           </div>
-          <div className="rounded-t-2xl bg-slate-50 p-4 h-full">
+          <div className="rounded-t-2xl bg-slate-50 p-4">
             {user.posts.map((post: Post) => {
               return (
                 <div key={post._id} className="mb-6">
