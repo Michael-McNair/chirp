@@ -1,10 +1,27 @@
 import Post from '../models/Post.js';
+import User from '../models/User.js';
 import { NotFoundError, BadRequestError } from '../errors/index.js';
 import asyncWrapper from '../middleware/async-wrapper.js';
 
 const getAllPosts = async (req, res) => {
   const posts = await Post.find({}).populate('createdBy');
   res.status(200).json({ success: true, posts });
+};
+
+const getFollowingPosts = async (req, res) => {
+  const { userId } = req.body;
+
+  const user = await User.findById(userId).populate('following');
+
+  if (!user) {
+    throw new NotFoundError(`No user with id ${userId}`);
+  }
+
+  const userIds = user.following.map((user) => user._id);
+
+  const posts = await Post.find({ createdBy: { $in: userIds } });
+
+  res.status(200).json(posts);
 };
 
 const createPost = asyncWrapper(async (req, res) => {
@@ -59,4 +76,4 @@ const updatePost = asyncWrapper(async (req, res) => {
     .json({ success: true, post: { textContent: post.textContent } });
 });
 
-export { getAllPosts, createPost, deletePost, updatePost };
+export { getAllPosts, getFollowingPosts, createPost, deletePost, updatePost };
