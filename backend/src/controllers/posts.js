@@ -19,9 +19,11 @@ const getFollowingPosts = async (req, res) => {
 
   const userIds = user.following.map((user) => user._id);
 
-  const posts = await Post.find({ createdBy: { $in: userIds } });
+  const posts = await Post.find({ createdBy: { $in: userIds } }).populate(
+    'createdBy'
+  );
 
-  res.status(200).json(posts);
+  res.status(200).json({ success: true, posts });
 };
 
 const createPost = asyncWrapper(async (req, res) => {
