@@ -18,7 +18,6 @@ export default function App() {
     name: '',
     email: '',
     color: '',
-    following: [],
   });
   const [page, setPage] = useState('for-you');
 
@@ -30,16 +29,11 @@ export default function App() {
     axios
       .get('http://localhost:3000/api/v1/my-info', { headers })
       .then((res) => {
-        if (!res.data.success) {
-          console.log('user not found');
-          localStorage.removeItem('token');
-        } else {
-          console.log(res.data.response);
-          setUser(res.data.response);
-        }
+        setUser(res.data.response);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        console.log('invalid token');
+        localStorage.removeItem('token');
       });
   }, []);
 
@@ -52,13 +46,7 @@ export default function App() {
             <Routes>
               <Route
                 path="/home"
-                element={
-                  <Home
-                    page={page}
-                    setPage={setPage}
-                    following={user.following}
-                  />
-                }
+                element={<Home page={page} setPage={setPage} id={user.id} />}
               />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
