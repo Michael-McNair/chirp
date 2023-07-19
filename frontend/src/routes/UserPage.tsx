@@ -15,9 +15,31 @@ export default function UserPage() {
     name: '',
     email: '',
     color: '',
-    following: [],
     posts: [],
   });
+
+  const follow = () => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    axios
+      .post(
+        `http://localhost:3000/api/v1/follow`,
+        { userIdToFollow: user.id },
+        { headers }
+      )
+      .then((res) => {
+        if (!res.data.success) {
+          console.log('user not found');
+        } else {
+          console.log(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     const headers = {
@@ -51,6 +73,13 @@ export default function UserPage() {
             </h2>
           </div>
           <div className="rounded-t-2xl bg-slate-50 p-4">
+            <button
+              className="bg-slate-50 rounded-full text-white text-xl px-4 py-1 mb-4 hover:opacity-70 duration-150"
+              style={{ backgroundColor: `#${user.color}` }}
+              onClick={() => follow()}
+            >
+              follow
+            </button>
             {user.posts.map((post: Post) => {
               return (
                 <div key={post._id} className="mb-6">
