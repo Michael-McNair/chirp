@@ -6,10 +6,12 @@ import Icon from './Icon.tsx';
 
 import { Post } from '../sharedTypes.tsx';
 
-export default function Following(props: { following: string[] }) {
-  const [results, setResults] = useState([]);
+interface Props {
+  id: string;
+}
 
-  console.log(props.following);
+export default function Following({ id }: Props) {
+  const [results, setResults] = useState([]);
 
   useEffect(() => {
     const headers = {
@@ -17,18 +19,14 @@ export default function Following(props: { following: string[] }) {
     };
 
     axios
-      .get('http://localhost:3000/api/v1/posts', { headers })
+      .request({
+        method: 'post',
+        url: 'http://localhost:3000/api/v1/posts/following',
+        data: { userId: id },
+        headers,
+      })
       .then((res) => {
-        const followingPosts = res.data.posts.filter((post: Post) => {
-          if (props.following.includes(post.createdBy._id)) {
-            return true;
-          }
-          return false;
-        });
-
-        console.log(followingPosts);
-
-        setResults(followingPosts);
+        setResults(res.data.posts);
       })
       .catch((err) => {
         console.log(err);
@@ -37,31 +35,25 @@ export default function Following(props: { following: string[] }) {
 
   return (
     <div className="following">
-      {results.map(
-        (result: {
-          _id: string;
-          createdBy: { name: string; color: string; _id: string };
-          textContent: string;
-        }) => {
-          return (
-            <div key={result._id} className="mb-6">
-              <div className="flex items-center gap-3 justify-start">
-                <Icon
-                  size={12}
-                  color={result.createdBy.color}
-                  userName={result.createdBy.name}
-                />
-                <Name
-                  name={result.createdBy.name}
-                  _id={result.createdBy._id}
-                  className={'text-2xl'}
-                />
-              </div>
-              <h2 className="text-xl mt-3">{result.textContent}</h2>
+      {results.map((result: Post) => {
+        return (
+          <div key={result._id} className="mb-6">
+            <div className="flex items-center gap-3 justify-start">
+              <Icon
+                size={12}
+                color={result.createdBy.color}
+                userName={result.createdBy.name}
+              />
+              <Name
+                name={result.createdBy.name}
+                _id={result.createdBy._id}
+                className={'text-2xl'}
+              />
             </div>
-          );
-        }
-      )}
+            <h2 className="text-xl mt-3">{result.textContent}</h2>
+          </div>
+        );
+      })}
     </div>
   );
 }
