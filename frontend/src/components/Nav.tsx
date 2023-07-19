@@ -3,47 +3,6 @@ import NavItem from './NavItem';
 import { User } from '../sharedTypes';
 import Icon from './Icon';
 
-// type ResizeCallback = (width: number) => void;
-
-// type ResizeAwareDivProps = {
-//   onResize: ResizeCallback;
-//   children: ReactNode;
-//   className: string;
-// };
-
-// const ResizeAwareDiv: React.FC<ResizeAwareDivProps> = ({
-//   onResize,
-//   children,
-//   className,
-// }) => {
-//   const divRef = useRef<HTMLDivElement>(null);
-
-//   useEffect(() => {
-//     const observer = new ResizeObserver((entries) => {
-//       for (const entry of entries) {
-//         const { width } = entry.contentRect;
-//         onResize(width);
-//       }
-//     });
-
-//     if (divRef.current) {
-//       observer.observe(divRef.current);
-//     }
-
-//     return () => {
-//       if (divRef.current) {
-//         observer.unobserve(divRef.current);
-//       }
-//     };
-//   }, [onResize]);
-
-//   return (
-//     <div ref={divRef} className={className}>
-//       {children}
-//     </div>
-//   );
-// };
-
 export default function Nav(props: { user: User }) {
   return (
     <section className="h-screen w-52 flex-shrink-0">
