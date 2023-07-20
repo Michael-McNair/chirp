@@ -1,4 +1,5 @@
 import Nav from './components/Nav.tsx';
+import WhoToFollow from './components/WhoToFollow.tsx';
 
 import Home from './routes/Home.tsx';
 import Register from './routes/Register.tsx';
@@ -42,7 +43,7 @@ export default function App() {
       <div className="flex justify-between max-w-6xl w-full px-8 lg:px-20 gap-5">
         <BrowserRouter>
           <Nav user={user} />
-          <div className="w-1/2 shadow-md bg-slate-50">
+          <div className="flex-1 shadow-md bg-slate-50">
             <Routes>
               <Route
                 path="/home"
@@ -55,11 +56,9 @@ export default function App() {
             </Routes>
           </div>
           {user.id ? (
-            <section className="w-1/4">
-              <h3>Who to follow</h3>
-            </section>
+            <WhoToFollow />
           ) : (
-            <section className="w-1/4">
+            <section className="w-40">
               <Link to="/register">Register</Link>
               <Link to="/login">Login</Link>
             </section>
