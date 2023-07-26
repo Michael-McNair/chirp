@@ -6,7 +6,7 @@ export default function Name(props: {
   className: string;
 }) {
   return (
-    <Link to={`/user/${props._id}`}>
+    <Link to={`/home/user/${props._id}`}>
       <h4 className={props.className}>{props.name}</h4>
     </Link>
   );

@@ -6,7 +6,9 @@ import Icon from '../components/Icon';
 import Name from '../components/Name';
 
 export default function UserPage() {
-  const { _id } = useParams();
+  const { id } = useParams();
+
+  console.log(id);
 
   const [success, setSuccess] = useState(false);
 
@@ -47,7 +49,7 @@ export default function UserPage() {
     };
 
     axios
-      .get(`http://localhost:3000/api/v1/user-info/${_id}`, { headers })
+      .get(`http://localhost:3000/api/v1/user-info/${id}`, { headers })
       .then((res) => {
         if (!res.data.success) {
           console.log('user not found');
@@ -98,7 +100,7 @@ export default function UserPage() {
           </div>
         </div>
       ) : (
-        <div>user not found</div>
+        <div className="w-full">user not found</div>
       )}
     </div>
   );

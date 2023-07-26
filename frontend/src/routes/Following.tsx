@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import Name from './Name.tsx';
-import Icon from './Icon.tsx';
+import Name from '../components/Name.tsx';
+import Icon from '../components/Icon.tsx';
 
 import { Post } from '../sharedTypes.tsx';
 
@@ -34,7 +34,7 @@ export default function Following({ id }: Props) {
   }, []);
 
   return (
-    <div className="following">
+    <div className="px-6">
       {results.map((result: Post) => {
         return (
           <div key={result._id} className="mb-6">
@@ -53,7 +53,11 @@ export default function Following({ id }: Props) {
             <h2 className="text-xl mt-3">{result.textContent}</h2>
           </div>
         );
-      })}
+      }) && (
+        <div className="w-full flex justify-center">
+          <h2 className="text-2xl mt-40">No posts by people you follow</h2>
+        </div>
+      )}
     </div>
   );
 }

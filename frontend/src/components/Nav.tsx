@@ -11,7 +11,7 @@ export default function Nav(props: { user: User }) {
       <nav className="flex flex-col justify-stretch fixed w-52 h-[calc(100%-4rem)] my-8 p-7 rounded-md bg-slate-50 shadow-md">
         <ul className="h-full flex flex-col justify-between ">
           <NavItem>
-            <Link to="/home">Home</Link>
+            <Link to="/home/for-you">Home</Link>
           </NavItem>
           <NavItem>Explore</NavItem>
           <NavItem>Notifications</NavItem>

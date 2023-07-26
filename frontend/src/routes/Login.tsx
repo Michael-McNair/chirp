@@ -6,7 +6,7 @@ export default function Register() {
   const [password, setPassword] = useState('');
 
   return (
-    <div className="App">
+    <div className="mx-4">
       <input
         type="email"
         placeholder="email"
@@ -31,7 +31,11 @@ export default function Register() {
               window.location.reload();
             })
             .catch((err) => {
-              console.log(err);
+              if (err.response) {
+                console.log(err.response.data.msg);
+              } else {
+                console.log(err);
+              }
             });
         }}
       >

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import Icon from './Icon';
-import Name from './Name';
+import Icon from '../components/Icon';
+import Name from '../components/Name';
 
 export default function ForYou() {
   const [results, setResults] = useState([]);
@@ -23,7 +23,7 @@ export default function ForYou() {
   }, []);
 
   return (
-    <div>
+    <div className="px-6">
       {results.map(
         (result: {
           _id: string;
