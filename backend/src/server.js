@@ -8,6 +8,7 @@ dotenv.config();
 // routes
 import postsRoute from './routes/posts.js';
 import authRoute from './routes/auth.js';
+import usersRoute from './routes/users.js';
 
 // middleware
 import errorHandler from './middleware/error-handler.js';
@@ -22,6 +23,7 @@ app.use(express.json());
 // routes
 app.use('/api/v1/posts', postsRoute);
 app.use('/api/v1', authRoute);
+app.use('/api/v1', usersRoute);
 
 // middleware
 app.use(notFound);
