@@ -26,7 +26,7 @@ export default function ForYou() {
   return (
     <div className="px-6">
       {results.map((result: Post) => {
-        return <PostComponent post={result} />;
+        return <PostComponent post={result} key={result._id} />;
       })}
     </div>
   );

@@ -5,9 +5,10 @@ import { Post } from '../sharedTypes.tsx';
 
 export default function PostComponent(props: { post: Post }) {
   const { post } = props;
+  console.log(post);
 
   return (
-    <div key={post._id} className="mb-6">
+    <div className="mb-6">
       <div className="flex items-center gap-3 justify-start">
         <Icon
           size={12}
