@@ -11,7 +11,7 @@ import {
 } from '../controllers/posts.js';
 
 router.route('/').get(getAllPosts).post(auth, createPost);
-router.route('/following').post(getFollowingPosts);
+router.route('/following').post(auth, getFollowingPosts);
 router.route('/:id').delete(auth, deletePost).patch(auth, updatePost);
 
 export default router;
