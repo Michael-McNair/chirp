@@ -21,19 +21,25 @@ export default function App() {
   });
 
   useEffect(() => {
-    const headers = {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    };
+    const token = localStorage.getItem('token');
 
-    axios
-      .get('http://localhost:3000/api/v1/my-info', { headers })
-      .then((res) => {
-        setUser(res.data.response);
-      })
-      .catch(() => {
-        console.log('invalid token');
-        localStorage.removeItem('token');
-      });
+    if (!token) {
+      console.log('no token');
+    } else {
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      axios
+        .get('http://localhost:3000/api/v1/my-info', { headers })
+        .then((res) => {
+          setUser(res.data.response);
+        })
+        .catch(() => {
+          console.log('invalid token');
+          localStorage.removeItem('token');
+        });
+    }
   }, []);
 
   return (
