@@ -5,7 +5,6 @@ import { Post } from '../sharedTypes.tsx';
 
 export default function PostComponent(props: { post: Post }) {
   const { post } = props;
-  console.log(post);
 
   return (
     <div className="mb-6">
