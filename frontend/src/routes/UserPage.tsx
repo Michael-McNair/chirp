@@ -32,11 +32,7 @@ export default function UserPage() {
         { headers }
       )
       .then((res) => {
-        if (!res.data.success) {
-          console.log('user not found');
-        } else {
-          console.log(res.data);
-        }
+        console.log(res.data.message);
       })
       .catch((err) => {
         console.log(err);
