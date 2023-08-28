@@ -83,7 +83,12 @@ const usersToFollow = asyncWrapper(async (req, res) => {
   const users = await User.find();
 
   const data = users.map((user) => {
-    return { id: user.id, name: user.name, color: user.color };
+    return {
+      id: user.id,
+      name: user.name,
+      color: user.color,
+      email: user.email,
+    };
   });
 
   res.status(200).json({
