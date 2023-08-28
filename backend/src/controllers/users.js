@@ -79,4 +79,17 @@ const publicUserInfo = asyncWrapper(async (req, res) => {
   });
 });
 
-export { myInfo, follow, publicUserInfo };
+const usersToFollow = asyncWrapper(async (req, res) => {
+  const users = await User.find();
+
+  const data = users.map((user) => {
+    return { id: user.id, name: user.name, color: user.color };
+  });
+
+  res.status(200).json({
+    success: true,
+    response: data,
+  });
+});
+
+export { myInfo, follow, publicUserInfo, usersToFollow };
