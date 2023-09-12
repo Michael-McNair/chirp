@@ -12,7 +12,7 @@ export default function PostComponent(props: { post: Post }) {
         <Icon
           size={12}
           color={post.createdBy.color}
-          userName={post.createdBy.name}
+          name={post.createdBy.name}
         />
         <Name
           name={post.createdBy.name}

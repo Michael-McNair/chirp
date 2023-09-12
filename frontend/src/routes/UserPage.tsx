@@ -82,7 +82,7 @@ export default function UserPage() {
               return (
                 <div key={post._id} className="mb-6">
                   <div className="flex items-center gap-3 justify-start">
-                    <Icon size={12} color={user.color} userName={user.name} />
+                    <Icon size={12} color={user.color} name={user.name} />
                     <Name
                       name={user.name}
                       _id={user.id}

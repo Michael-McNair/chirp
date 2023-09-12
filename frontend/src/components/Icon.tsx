@@ -1,7 +1,7 @@
 export default function Icon(props: {
   size: number;
   color: string;
-  userName: string;
+  name: string;
 }) {
   return (
     <div
@@ -16,7 +16,7 @@ export default function Icon(props: {
         className="text-white"
         style={{ fontSize: `${props.size * 0.17}rem` }}
       >
-        {props.userName ? props.userName.split('')[0].toUpperCase() : ''}
+        {props.name ? props.name.split('')[0].toUpperCase() : ''}
       </h2>
     </div>
   );
