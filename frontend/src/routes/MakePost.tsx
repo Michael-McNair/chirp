@@ -10,7 +10,7 @@ export default function Post() {
     <div className="h-screen w-full flex items-center justify-center relative">
       <Link
         to="/home"
-        className="w-12 h-12 absolute top-3 left-0 flex justify-center items-center"
+        className="w-12 h-12 absolute top-3 left-3 flex justify-center items-center"
       >
         <div className="bg-black h-1 w-full rotate-45 -translate-y-1/2 absolute"></div>
         <div className="bg-black h-1 w-full -rotate-45 -translate-y-1/2 absolute"></div>
