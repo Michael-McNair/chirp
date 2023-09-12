@@ -26,7 +26,7 @@ export default function Nav(props: { user: User }) {
         </ul>
 
         <div className="mt-7 flex items-center gap-1.5">
-          <Icon userName={props.user.name} size={10} color={props.user.color} />
+          <Icon name={props.user.name} size={10} color={props.user.color} />
 
           <h3 className="text-xl">{props.user.name}</h3>
         </div>
