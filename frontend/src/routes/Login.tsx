@@ -11,13 +11,13 @@ export default function Register() {
         button="register"
         inputs={[
           {
-            label: 'email',
-            placeholder: 'email',
+            label: 'Email',
+            placeholder: 'Email',
             type: 'email',
           },
           {
-            label: 'password',
-            placeholder: 'password',
+            label: 'Password',
+            placeholder: 'Password',
             type: 'text',
           },
         ]}
