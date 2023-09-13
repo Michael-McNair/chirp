@@ -70,7 +70,7 @@ export default function Home() {
               For you
             </Link>
             {page === 'for-you' && (
-              <div className="absolute bottom-0 right-1/2 translate-x-1/2 w-3 h-1 bg-blue-600"></div>
+              <div className="absolute bottom-0 right-1/2 translate-x-1/2 w-3 h-1 bg-black"></div>
             )}
           </div>
           <div className="h-12 flex-1 flex justify-center relative">
@@ -81,7 +81,7 @@ export default function Home() {
               Following
             </Link>
             {page === 'following' && (
-              <div className="absolute bottom-0 right-1/2 translate-x-1/2 w-3 h-1 bg-blue-600"></div>
+              <div className="absolute bottom-0 right-1/2 translate-x-1/2 w-3 h-1 bg-black"></div>
             )}
           </div>
         </div>
@@ -92,15 +92,7 @@ export default function Home() {
           <Route path="*" element={<Navigate to="for-you" />} />
         </Routes>
       </div>
-      {user ? (
-        <WhoToFollow />
-      ) : (
-        <div className="w-40">
-          <Link to="/login">login</Link>
-          <br />
-          <Link to="/register">register</Link>
-        </div>
-      )}
+      <WhoToFollow />
     </div>
   );
 }
