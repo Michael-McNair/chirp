@@ -1,49 +1,47 @@
-import { useState } from 'react';
 import axios from 'axios';
+import SimpleForm from '../components/SimpleForm';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   return (
-    <div className="App">
-      <input
-        type="text"
-        placeholder="name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        type="email"
-        placeholder="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button
-        onClick={() => {
+    <div className="mx-4">
+      <SimpleForm
+        button="register"
+        inputs={[
+          {
+            label: 'User name',
+            placeholder: 'User name',
+            type: 'text',
+          },
+          {
+            label: 'Email',
+            placeholder: 'Email',
+            type: 'email',
+          },
+          {
+            label: 'Password',
+            placeholder: 'Password',
+            type: 'text',
+          },
+        ]}
+        onSubmit={(formStates: any) => {
           axios
             .post('http://localhost:3000/api/v1/register', {
-              email: email,
-              name: name,
-              password: password,
+              email: formStates.email,
+              name: formStates.name,
+              password: formStates.password,
             })
             .then((res) => {
+              navigate('/home');
               console.log(res.data);
             })
             .catch((err) => {
               console.log(err);
             });
         }}
-      >
-        make account
-      </button>
+      />
     </div>
   );
 }
