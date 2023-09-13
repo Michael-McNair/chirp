@@ -1,34 +1,35 @@
-import { useState } from 'react';
 import axios from 'axios';
+import SimpleForm from '../components/SimpleForm';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   return (
     <div className="mx-4">
-      <input
-        type="email"
-        placeholder="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button
-        onClick={() => {
+      <SimpleForm
+        button="register"
+        inputs={[
+          {
+            label: 'email',
+            placeholder: 'email',
+            type: 'email',
+          },
+          {
+            label: 'password',
+            placeholder: 'password',
+            type: 'text',
+          },
+        ]}
+        onSubmit={(formStates: any) => {
           axios
             .post('http://localhost:3000/api/v1/login', {
-              email: email,
-              password: password,
+              email: formStates.email,
+              password: formStates.password,
             })
             .then((res) => {
               localStorage.setItem('token', res.data.token);
-              window.location.reload();
+              navigate('/home');
             })
             .catch((err) => {
               if (err.response) {
@@ -38,9 +39,7 @@ export default function Register() {
               }
             });
         }}
-      >
-        login
-      </button>
+      />
     </div>
   );
 }
