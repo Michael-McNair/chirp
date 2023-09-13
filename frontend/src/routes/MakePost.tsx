@@ -31,7 +31,7 @@ export default function Post() {
           rows={1}
           style={{ height: textareaHeight }}
         />
-        <h4 className={`text-lg ${post.length >= 300 && 'text-red-700'}`}>
+        <h4 className={`py-1 text-lg ${post.length >= 300 && 'text-red-700'}`}>
           {post.length}/300
         </h4>
         <button
