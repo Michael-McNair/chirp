@@ -1,4 +1,11 @@
-import { Route, Link, useLocation, Routes, Navigate } from 'react-router-dom';
+import {
+  Route,
+  Link,
+  useLocation,
+  Routes,
+  Navigate,
+  useNavigate,
+} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -11,6 +18,8 @@ import Following from './Following.tsx';
 import UserPage from './UserPage.tsx';
 
 export default function Home() {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState<User>({
     id: '',
     name: '',
@@ -22,7 +31,7 @@ export default function Home() {
     const token = localStorage.getItem('token');
 
     if (!token) {
-      console.log('no token');
+      navigate('/register');
     } else {
       const headers = {
         Authorization: `Bearer ${token}`,
@@ -34,8 +43,8 @@ export default function Home() {
           setUser(res.data.response);
         })
         .catch(() => {
-          console.log('invalid token');
           localStorage.removeItem('token');
+          navigate('/register');
         });
     }
   }, []);
