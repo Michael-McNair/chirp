@@ -1,12 +1,14 @@
 import axios from 'axios';
 import SimpleForm from '../components/SimpleForm';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Register() {
   const navigate = useNavigate();
 
   return (
-    <div className="mx-4">
+    <div className="flex flex-col items-center justify-center h-screen w-full">
+      <h1 className="text-3xl mb-4">Register</h1>
       <SimpleForm
         button="register"
         inputs={[
@@ -48,6 +50,9 @@ export default function Register() {
             });
         }}
       />
+      <Link to="/login" className="text-xl mt-3 text-blue-700 hover:underline">
+        Already have an account?
+      </Link>
     </div>
   );
 }
