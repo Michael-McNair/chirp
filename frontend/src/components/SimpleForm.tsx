@@ -2,14 +2,24 @@ import { useState } from 'react';
 
 export default function SimpleForm(props: {
   button: string;
-  inputs: { label: string; placeholder: string; type: string }[];
+  inputs: {
+    label: string;
+    placeholder: string;
+    type: string;
+    variable: string;
+  }[];
   onSubmit: any;
 }) {
   const defaultStates: any = {};
 
   props.inputs.forEach(
-    (input: { label: string; placeholder: string; type: string }) => {
-      defaultStates[input.label] = '';
+    (input: {
+      label: string;
+      placeholder: string;
+      type: string;
+      variable: string;
+    }) => {
+      defaultStates[input.variable] = '';
     }
   );
 
@@ -32,8 +42,8 @@ export default function SimpleForm(props: {
                 className="w-full p-2 focus:outline-none bg-slate-200"
                 placeholder={input.placeholder}
                 type={input.type}
-                value={formStates[input.label]}
-                name={input.label}
+                value={formStates[input.variable]}
+                name={input.variable}
                 onChange={(e: any) => {
                   let newFormStates = Object.assign({}, formStates);
 

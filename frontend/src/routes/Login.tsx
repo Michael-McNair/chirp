@@ -14,11 +14,13 @@ export default function Register() {
             label: 'Email',
             placeholder: 'Email',
             type: 'email',
+            variable: 'email',
           },
           {
             label: 'Password',
             placeholder: 'Password',
             type: 'text',
+            variable: 'password',
           },
         ]}
         onSubmit={(formStates: any) => {

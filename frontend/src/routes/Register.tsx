@@ -14,19 +14,23 @@ export default function Register() {
             label: 'User name',
             placeholder: 'User name',
             type: 'text',
+            variable: 'name',
           },
           {
             label: 'Email',
             placeholder: 'Email',
             type: 'email',
+            variable: 'email',
           },
           {
             label: 'Password',
             placeholder: 'Password',
             type: 'text',
+            variable: 'password',
           },
         ]}
         onSubmit={(formStates: any) => {
+          console.log(formStates);
           axios
             .post('http://localhost:3000/api/v1/register', {
               email: formStates.email,
@@ -34,7 +38,9 @@ export default function Register() {
               password: formStates.password,
             })
             .then((res) => {
+              localStorage.setItem('token', res.data.token);
               navigate('/home');
+              window.location.reload();
               console.log(res.data);
             })
             .catch((err) => {
