@@ -16,7 +16,7 @@ export default function Home(props: { user: User }) {
   }, [location]);
 
   return (
-    <div className="w-full flex gap-6">
+    <div className="flex justify-between max-w-6xl w-full px-8 lg:px-20 gap-6">
       <Nav user={props.user} />
       <div className="bg-slate-50 shadow-md w-full">
         <div className="flex">

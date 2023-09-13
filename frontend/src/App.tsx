@@ -44,18 +44,16 @@ export default function App() {
 
   return (
     <div className="flex justify-center items-start w-screen bg-slate-100">
-      <div className="flex justify-between max-w-6xl w-full px-8 lg:px-20 gap-5">
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/post" element={<Post />} />
-          <Route path="/home" element={<Home user={user} />}>
-            <Route path="for-you" element={<ForYou />} />
-            <Route path="following" element={<Following id={user.id} />} />
-            <Route path="user/:id" element={<UserPage />} />
-          </Route>
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/post" element={<Post />} />
+        <Route path="/home" element={<Home user={user} />}>
+          <Route path="for-you" element={<ForYou />} />
+          <Route path="following" element={<Following id={user.id} />} />
+          <Route path="user/:id" element={<UserPage />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
