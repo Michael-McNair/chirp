@@ -10,7 +10,7 @@ export default function Register() {
     <div className="flex flex-col items-center justify-center h-screen w-full">
       <h1 className="text-3xl mb-4">Login</h1>
       <SimpleForm
-        button="register"
+        button="login"
         inputs={[
           {
             label: 'Email',
