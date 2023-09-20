@@ -59,7 +59,7 @@ export default function UserPage() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [user]);
 
   return (
     <div>
