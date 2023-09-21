@@ -3,8 +3,9 @@ module.exports = {
   theme: {
     extend: {},
     screens: {
-      md: '700px',
-      lg: '900px',
+      sm: '640px',
+      md: '850px',
+      lg: '1000px',
     },
   },
   plugins: [],
