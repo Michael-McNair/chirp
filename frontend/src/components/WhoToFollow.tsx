@@ -16,7 +16,7 @@ export default function WhoToFollow() {
   }, []);
 
   return (
-    <section className="h-screen w-48 flex-shrink-0">
+    <section className="hidden lg:block h-screen w-48 flex-shrink-0">
       <div className="w-full h-0"></div>
 
       <div className="flex flex-col justify-stretch fixed w-48 h-[calc(100%-4rem)] my-8 rounded-md bg-slate-50 shadow-md">

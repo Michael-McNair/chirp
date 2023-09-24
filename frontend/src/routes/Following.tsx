@@ -33,12 +33,14 @@ export default function Following({ id }: Props) {
   }, []);
 
   return (
-    <div className="px-6">
+    <div className="px-6 mt-2 flex-1">
       {results.map((result: Post) => {
         return <PostComponent post={result} key={result._id} />;
       }) && (
-        <div className="w-full flex justify-center">
-          <h2 className="text-2xl mt-40">No posts by people you follow</h2>
+        <div className="w-full h-full flex justify-center items-center">
+          <h2 className="text-2xl text-center">
+            No posts by people you follow
+          </h2>
         </div>
       )}
     </div>

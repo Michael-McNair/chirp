@@ -58,11 +58,11 @@ export default function Home() {
   }, [location]);
 
   return (
-    <div className="flex justify-between max-w-6xl w-full px-8 lg:px-20 gap-6">
+    <div className="flex min-h-full justify-between max-w-6xl w-full px-0 sm:px-6 md:px-16 gap-6">
       <Nav user={user} />
-      <div className="bg-slate-50 shadow-md w-full">
-        <div className="flex">
-          <div className="h-12 flex-1 flex justify-center relative">
+      <div className="flex flex-col bg-slate-50 sm:shadow-md w-full">
+        <div className="flex h-12 border-b-slate-200 bg-slate-50 border-b-2 sticky left-0 right-0 top-0">
+          <div className="h-full flex-1 flex justify-center relative">
             <Link
               to="for-you"
               className="text-xl h-full w-full duration-150 hover:bg-slate-200 flex items-center justify-center"
@@ -73,7 +73,7 @@ export default function Home() {
               <div className="absolute bottom-0 right-1/2 translate-x-1/2 w-3 h-1 bg-black"></div>
             )}
           </div>
-          <div className="h-12 flex-1 flex justify-center relative">
+          <div className="h-full flex-1 flex justify-center relative">
             <Link
               to="following"
               className="text-xl h-full w-full duration-150 hover:bg-slate-200 flex items-center justify-center"
@@ -91,6 +91,7 @@ export default function Home() {
           <Route path="user/:id" element={<UserPage />} />
           <Route path="*" element={<Navigate to="for-you" />} />
         </Routes>
+        <div className="h-12 sm:hidden"></div>
       </div>
       <WhoToFollow />
     </div>

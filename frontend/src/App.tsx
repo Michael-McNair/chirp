@@ -8,7 +8,7 @@ import NotFound from './routes/NotFound.tsx';
 
 export default function App() {
   return (
-    <div className="flex justify-center items-start w-screen bg-slate-100">
+    <div className="flex justify-center items-start w-screen min-h-screen bg-slate-100">
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
