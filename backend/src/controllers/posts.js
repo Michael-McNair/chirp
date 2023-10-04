@@ -4,7 +4,9 @@ import { NotFoundError, BadRequestError } from '../errors/index.js';
 import asyncWrapper from '../middleware/async-wrapper.js';
 
 const getAllPosts = async (req, res) => {
-  const posts = await Post.find({}).populate('createdBy');
+  const posts = await Post.find({})
+    .populate('createdBy')
+    .sort({ createdAt: -1 });
   res.status(200).json({ success: true, posts });
 };
 
@@ -19,9 +21,9 @@ const getFollowingPosts = async (req, res) => {
 
   const userIds = user.following.map((user) => user._id);
 
-  const posts = await Post.find({ createdBy: { $in: userIds } }).populate(
-    'createdBy'
-  );
+  const posts = await Post.find({ createdBy: { $in: userIds } })
+    .populate('createdBy')
+    .sort({ createdAt: -1 });
 
   res.status(200).json({ success: true, posts });
 };
