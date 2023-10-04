@@ -8,8 +8,6 @@ import Name from '../components/Name';
 export default function UserPage() {
   const { id } = useParams();
 
-  console.log(id);
-
   const [success, setSuccess] = useState(false);
 
   const [user, setUser] = useState<UserWithPosts>({
@@ -35,7 +33,7 @@ export default function UserPage() {
         console.log(res.data.message);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.message);
       });
   };
 
@@ -51,7 +49,6 @@ export default function UserPage() {
           console.log('user not found');
           setSuccess(false);
         } else {
-          console.log(res.data.response);
           setSuccess(true);
           setUser(res.data.response);
         }
@@ -59,7 +56,7 @@ export default function UserPage() {
       .catch((err) => {
         console.log(err);
       });
-  }, [user]);
+  }, [id]);
 
   return (
     <div>

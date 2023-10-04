@@ -34,13 +34,20 @@ const UserSchema = new mongoose.Schema({
   ],
 });
 
-UserSchema.pre('save', async function () {
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+UserSchema.pre('save', async function (next) {
+  // Check if the password field is modified
+  if (this.isModified('password')) {
+    await this.hashPassword();
+  }
+  next();
 });
 
+UserSchema.methods.hashPassword = async function () {
+  const salt = await bcrypt.genSalt(12);
+  this.password = await bcrypt.hash(this.password, salt);
+};
+
 UserSchema.methods.createJWT = function () {
-  console.log(this.password);
   return jwt.sign(
     { userId: this._id, name: this.name },
     process.env.JWT_SECRET,
