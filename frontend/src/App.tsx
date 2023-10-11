@@ -5,6 +5,7 @@ import Register from './routes/Register.tsx';
 import Login from './routes/Login.tsx';
 import Post from './routes/MakePost.tsx';
 import NotFound from './routes/NotFound.tsx';
+import Premium from './routes/Premium.tsx';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/post" element={<Post />} />
+        <Route path="/premium" element={<Premium />} />
         <Route path="/home/*" element={<Home />} />
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="*" element={<NotFound />} />

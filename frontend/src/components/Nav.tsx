@@ -5,6 +5,7 @@ import home from '../images/home.svg';
 import profile from '../images/profile.svg';
 import logout from '../images/logout.svg';
 import post from '../images/post.svg';
+import premium from '../images/premium.svg';
 
 export default function Nav(props: { user: User }) {
   return (
@@ -21,6 +22,9 @@ export default function Nav(props: { user: User }) {
           </Link>
           <Link to="/register" className="text-2xl">
             Logout
+          </Link>
+          <Link to="/premium" className="text-2xl">
+            Premium
           </Link>
           <Link
             to="/post"
@@ -52,6 +56,11 @@ export default function Nav(props: { user: User }) {
         <Link to="/register" className="flex-1 flex justify-center">
           <img className="h-full aspect-square" src={logout} alt="logout" />
         </Link>
+
+        <Link to="/premium" className="flex-1 flex justify-center">
+          <img className="h-full aspect-square" src={premium} alt="premium" />
+        </Link>
+
         <Link to="/post" className="flex-1 flex justify-center">
           <img className="h-full aspect-square" src={post} alt="post" />
         </Link>
