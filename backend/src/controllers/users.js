@@ -38,18 +38,24 @@ const follow = asyncWrapper(async (req, res) => {
       .json({ success: false, message: 'User to follow not found' });
   }
 
-  if (user.following.includes(userIdToFollow)) {
-    return res
-      .status(400)
-      .json({ success: false, message: 'User is already following this user' });
+  const isFollowing = user.following.includes(userIdToFollow);
+
+  if (isFollowing) {
+    // If the user is already following, remove them from the array
+    user.following.pull(userIdToFollow);
+  } else {
+    // If not following, add the user to the array
+    user.following.push(userIdToFollow);
   }
 
-  user.following.push(userIdToFollow);
   await user.save();
 
-  res
-    .status(200)
-    .json({ success: true, message: 'User followed successfully' });
+  res.status(200).json({
+    success: true,
+    message: isFollowing
+      ? 'User unfollowed successfully'
+      : 'User followed successfully',
+  });
 });
 
 const publicUserInfo = asyncWrapper(async (req, res) => {

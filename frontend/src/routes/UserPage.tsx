@@ -1,12 +1,16 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+
 import { UserWithPosts, Post } from '../sharedTypes';
+
 import Icon from '../components/Icon';
 import Name from '../components/Name';
 
 export default function UserPage() {
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   const [success, setSuccess] = useState(false);
 
@@ -17,6 +21,8 @@ export default function UserPage() {
     color: '',
     posts: [],
   });
+
+  const [following, setFollowing] = useState<string[]>([]);
 
   const follow = () => {
     const headers = {
@@ -31,6 +37,7 @@ export default function UserPage() {
       )
       .then((res) => {
         console.log(res.data.message);
+        checkFollowingUsers();
       })
       .catch((err) => {
         console.log(err.response.data.message);
@@ -56,7 +63,31 @@ export default function UserPage() {
       .catch((err) => {
         console.log(err);
       });
+
+    checkFollowingUsers();
   }, [id]);
+
+  const checkFollowingUsers = () => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      navigate('/register');
+    } else {
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      axios
+        .get('http://localhost:3000/api/v1/my-info', { headers })
+        .then((res) => {
+          setFollowing(res.data.response.following);
+        })
+        .catch(() => {
+          localStorage.removeItem('token');
+          navigate('/register');
+        });
+    }
+  };
 
   return (
     <div>
@@ -73,7 +104,7 @@ export default function UserPage() {
               style={{ backgroundColor: `#${user.color}` }}
               onClick={() => follow()}
             >
-              follow
+              {following.includes(user.id) ? 'Unfollow' : 'Follow'}
             </button>
             {user.posts.map((post: Post) => {
               return (
