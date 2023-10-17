@@ -2,9 +2,16 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+import Popup from '../components/Popup';
+
 export default function Post() {
   const [post, setPost] = useState('');
+
   const [textareaHeight, setTextareaHeight] = useState('auto');
+
+  const [popupShown, setPopupShown] = useState(false);
+
+  const [popupText, setPopupText] = useState('');
 
   return (
     <div className="h-screen w-full flex items-center justify-center relative">
@@ -49,15 +56,26 @@ export default function Post() {
               )
               .then((res) => {
                 console.log(res.data);
+                setPopupText('Post Created Successfully');
+                setPopupShown(true);
+                setPost('');
               })
               .catch((err) => {
                 console.log(err);
+                setPopupText('An Error Occurred When Trying To Create Post');
+                setPopupShown(true);
               });
           }}
         >
           Post
         </button>
       </div>
+
+      <Popup
+        textContent={popupText}
+        shown={popupShown}
+        setPopupShown={setPopupShown}
+      />
     </div>
   );
 }
