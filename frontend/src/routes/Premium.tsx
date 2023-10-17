@@ -1,6 +1,11 @@
+import { useState } from 'react';
+
 import treasure from '../images/treasure.svg';
+import Popup from '../components/Popup';
 
 export default function Premium() {
+  const [popupShown, setPopupShown] = useState(false);
+
   return (
     <div className="w-full p-6 md: h-screen flex justify-center items-center">
       <div className="flex flex-col md:flex-row gap-8 md:gap-0 lg:gap-15 items-center">
@@ -21,7 +26,12 @@ export default function Premium() {
                 Experience no Advertisements
               </li>
             </ul>
-            <button className="bg-black md:text-lg font-semibold rounded-full text-slate-50 py-4 px-6 hover:opacity-70">
+            <button
+              className="bg-black md:text-lg font-semibold rounded-full text-slate-50 py-4 px-6 hover:opacity-70"
+              onClick={() => {
+                setPopupShown(true);
+              }}
+            >
               Go Premium for 11$ a month
             </button>
           </div>
@@ -34,6 +44,11 @@ export default function Premium() {
           />
         </div>
       </div>
+      <Popup
+        textContent="feature is not implemented yet"
+        shown={popupShown}
+        setPopupShown={setPopupShown}
+      />
     </div>
   );
 }
