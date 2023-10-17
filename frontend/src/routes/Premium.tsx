@@ -21,7 +21,7 @@ export default function Premium() {
                 Experience no Advertisements
               </li>
             </ul>
-            <button className="bg-black md:text-lgfont-semibold rounded-full text-slate-50 py-4 px-6 hover:opacity-70">
+            <button className="bg-black md:text-lg font-semibold rounded-full text-slate-50 py-4 px-6 hover:opacity-70">
               Go Premium for 11$ a month
             </button>
           </div>
