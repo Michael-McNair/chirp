@@ -52,7 +52,9 @@ export default function PostComponent(props: { post: Post }) {
           {formatTimeAgo(post.createdAt)}
         </h3>
       </div>
-      <h2 className="text-lg sm:text-xl mt-2 sm:mt-3">{post.textContent}</h2>
+      <h2 className="text-lg sm:text-xl mt-2 sm:mt-3 break-words">
+        {post.textContent}
+      </h2>
     </div>
   );
 }
