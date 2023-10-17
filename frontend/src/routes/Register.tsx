@@ -2,9 +2,15 @@ import axios from 'axios';
 import SimpleForm from '../components/SimpleForm';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+
+import Popup from '../components/Popup';
 
 export default function Register() {
   const navigate = useNavigate();
+
+  const [popupShown, setPopupShown] = useState(false);
+  const [popupText, setPopupText] = useState('');
 
   return (
     <div className="flex flex-col items-center justify-center h-screen w-full">
@@ -47,12 +53,20 @@ export default function Register() {
             })
             .catch((err) => {
               console.log(err);
+              setPopupShown(true);
+              setPopupText('Something Went Wrong');
             });
         }}
       />
       <Link to="/login" className="text-xl mt-3 text-blue-700 hover:underline">
         Already have an account?
       </Link>
+
+      <Popup
+        textContent={popupText}
+        shown={popupShown}
+        setPopupShown={setPopupShown}
+      />
     </div>
   );
 }
