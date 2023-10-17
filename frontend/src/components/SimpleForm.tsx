@@ -62,6 +62,7 @@ export default function SimpleForm(props: {
                   }}
                 />
                 <button
+                  type="button"
                   className="h-full absolute right-1 top-0 flex items-center justify-center"
                   onClick={() => {
                     setPasswordShown(!passwordShown);
