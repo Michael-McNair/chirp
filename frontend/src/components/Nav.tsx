@@ -41,7 +41,7 @@ export default function Nav(props: { user: User }) {
         </ul>
       </nav>
 
-      <nav className="flex bottom-0 h-12 w-screen md:hidden sm:flex-col justify-around fixed sm:w-16 sm:h-[calc(100%-4rem)] sm:my-8 p-2 bg-slate-50 sm:py-8 sm:rounded-md sm:shadow-md border-t-2 border-slate-200">
+      <nav className="flex bottom-0 h-12 w-screen md:hidden sm:flex-col justify-around fixed sm:w-16 sm:h-[calc(100%-4rem)] sm:my-8 p-2 sm:p-3 bg-slate-50 sm:py-8 sm:rounded-md sm:shadow-md border-t-2 border-slate-200">
         <Link to="/home/for-you" className="flex-1 flex justify-center">
           <img className="h-full aspect-square" src={home} alt="home" />
         </Link>
