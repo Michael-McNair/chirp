@@ -1,5 +1,6 @@
 import Icon from './Icon.tsx';
-import Name from './Name.tsx';
+
+import { Link } from 'react-router-dom';
 
 import { Post } from '../sharedTypes.tsx';
 
@@ -42,11 +43,9 @@ export default function PostComponent(props: { post: Post }) {
             color={post.createdBy.color}
             name={post.createdBy.name}
           />
-          <Name
-            name={post.createdBy.name}
-            _id={post.createdBy._id}
-            className={'text-xl sm:text-2xl'}
-          />
+          <Link to={`/home/user/${post.createdBy._id}`}>
+            <h4 className="text-xl sm:text-2xl">{post.createdBy.name}</h4>
+          </Link>
         </div>
         <h3 className="text-md sm:text-lg text-slate-500">
           {formatTimeAgo(post.createdAt)}

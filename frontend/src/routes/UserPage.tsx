@@ -1,11 +1,10 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import { UserWithPosts, Post } from '../sharedTypes';
 
 import Icon from '../components/Icon';
-import Name from '../components/Name';
 
 export default function UserPage() {
   const { id } = useParams();
@@ -111,11 +110,10 @@ export default function UserPage() {
                 <div key={post._id} className="mb-6">
                   <div className="flex items-center gap-3 justify-start">
                     <Icon size={12} color={user.color} name={user.name} />
-                    <Name
-                      name={user.name}
-                      _id={user.id}
-                      className={'text-2xl'}
-                    />
+
+                    <Link to={`/home/user/${user.id}`}>
+                      <h4 className="text-2xl">{user.name}</h4>
+                    </Link>
                   </div>
                   <h2 className="text-xl mt-3">{post.textContent}</h2>
                 </div>
