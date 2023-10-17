@@ -27,7 +27,7 @@ export default function Register() {
           {
             label: 'Password',
             placeholder: 'Password',
-            type: 'text',
+            type: 'password',
             variable: 'password',
           },
         ]}
