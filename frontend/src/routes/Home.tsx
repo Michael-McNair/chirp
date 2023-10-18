@@ -88,7 +88,7 @@ export default function Home() {
         <Routes>
           <Route path="for-you" element={<ForYou />} />
           <Route path="following" element={<Following id={user.id} />} />
-          <Route path="user/:id" element={<UserPage />} />
+          <Route path="user/:id" element={<UserPage myId={user.id} />} />
           <Route path="*" element={<Navigate to="for-you" />} />
         </Routes>
         <div className="h-12 sm:hidden"></div>
