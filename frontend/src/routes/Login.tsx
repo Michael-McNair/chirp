@@ -59,11 +59,26 @@ export default function Register() {
       >
         Don't have an account?
       </Link>
-      <Popup
-        textContent={popupText}
-        shown={popupShown}
-        setPopupShown={setPopupShown}
-      />
+      <Popup shown={popupShown}>
+        <button
+          className="w-10 h-10 relative mb-3"
+          onClick={() => setPopupShown(false)}
+        >
+          <div className="h-1 w-full bg-black absolute top-1/2 -translate-y-1/2 rotate-45"></div>
+          <div className="h-1 w-full bg-black absolute top-1/2 -translate-y-1/2 -rotate-45"></div>
+        </button>
+
+        <h2 className="text-center text-4xl mb-10 whitespace-nowrap">
+          {popupText}
+        </h2>
+
+        <button
+          className="bg-black text-white p-3 text-3xl w-full"
+          onClick={() => setPopupShown(false)}
+        >
+          Close
+        </button>
+      </Popup>
     </div>
   );
 }
