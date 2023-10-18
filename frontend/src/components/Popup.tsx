@@ -7,7 +7,7 @@ export default function Popup(props: {
     <div
       className={`${
         props.shown ? 'block' : 'hidden'
-      } fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-50 shadow-md rounded-md p-10`}
+      } fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-50 shadow-md rounded-md p-10 z-10`}
     >
       <button
         className="w-10 h-10 relative mb-3"
