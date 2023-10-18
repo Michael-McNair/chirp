@@ -58,7 +58,7 @@ export default function Home() {
   }, [location]);
 
   return (
-    <div className="flex min-h-full justify-between max-w-6xl w-full px-0 sm:px-6 md:px-16 gap-6">
+    <div className="flex min-h-full justify-between max-w-7xl w-full px-0 sm:px-6 md:px-12 gap-6">
       <Nav user={user} />
       <div className="flex flex-col bg-slate-50 sm:shadow-md w-full overflow-hidden">
         <div className="flex h-12 border-b-slate-200 bg-slate-50 border-b-2 sticky left-0 right-0 top-0">

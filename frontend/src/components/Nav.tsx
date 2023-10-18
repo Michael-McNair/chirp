@@ -12,7 +12,7 @@ export default function Nav(props: { user: User }) {
     <section className="fixed sm:static w-full sm:h-screen sm:w-16 md:w-52 flex-shrink-0">
       <div className="hidden sm:block w-full h-0"></div>
 
-      <nav className="md:flex hidden flex-col justify-stretch fixed w-52 h-[calc(100%-4rem)] my-8 p-7 pt-0 rounded-md bg-slate-50 shadow-md ">
+      <nav className="md:flex hidden flex-col justify-stretch fixed w-52 h-[calc(100%-4rem)] my-8 p-7 pt-5 rounded-md bg-slate-50 shadow-md ">
         <ul className="flex h-full flex-col justify-around my-2">
           <Link to="/home/for-you" className="text-2xl">
             Home
