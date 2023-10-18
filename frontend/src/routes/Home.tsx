@@ -93,7 +93,7 @@ export default function Home() {
         </Routes>
         <div className="h-12 sm:hidden"></div>
       </div>
-      <WhoToFollow />
+      <WhoToFollow id={user.id} />
     </div>
   );
 }
